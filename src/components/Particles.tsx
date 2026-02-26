@@ -1,25 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 export default function Particles() {
+  // ✅ Generate random values once (pure render)
+  const particles = useMemo(() => {
+    return Array.from({ length: 15 }).map((_, i) => ({
+      id: i,
+      size: Math.random() * 6 + 4,
+      left: Math.random() * 100,
+      duration: 10 + Math.random() * 10,
+    }));
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden -z-10">
-      {[...Array(25)].map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-blue-500 rounded-full opacity-30"
-          initial={{
-            x: Math.random() * 1200,
-            y: Math.random() * 800,
+          key={p.id}
+          className="absolute bg-blue-500 rounded-full opacity-20"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.left}%`,
+            top: "-10px",
           }}
           animate={{
-            y: [null, Math.random() * 800],
+            y: ["0%", "120vh"],
           }}
           transition={{
-            duration: 10 + Math.random() * 10,
+            duration: p.duration,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "loop",
+            ease: "linear",
           }}
         />
       ))}
