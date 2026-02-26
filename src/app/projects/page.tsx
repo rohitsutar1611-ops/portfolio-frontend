@@ -1,20 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl?: string;
-  githubLink?: string;
-  liveLink?: string;
-};
-
-async function getProjects(): Promise<Project[]> {
+async function getProjects() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/projects`,
     { cache: "no-store" }
   );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch projects");
+  }
 
   return res.json();
 }
@@ -29,11 +24,10 @@ export default async function ProjectsPage() {
       </h1>
 
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg"
-          >
+        {projects.map((project: any) => (
+          <div key={project.id}
+            className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+
             {project.imageUrl && (
               <Image
                 src={project.imageUrl}
@@ -53,24 +47,12 @@ export default async function ProjectsPage() {
                 {project.description}
               </p>
 
-              <div className="flex justify-between">
-                <Link
-                  href={`/projects/${project.id}`}
-                  className="text-blue-400 hover:underline"
-                >
-                  View →
-                </Link>
-
-                {project.githubLink && (
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
-                )}
-              </div>
+              <Link
+                href={`/projects/${project.id}`}
+                className="text-blue-400 hover:underline"
+              >
+                View Details →
+              </Link>
             </div>
           </div>
         ))}

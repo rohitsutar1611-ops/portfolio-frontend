@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 
 type Project = {
   id: string;
@@ -17,6 +16,7 @@ type Project = {
 export default function AdminPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [authorized, setAuthorized] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
   const [title, setTitle] = useState("");
@@ -41,18 +41,24 @@ export default function AdminPage() {
     }
   }
 
-  // Password check (no state inside effect)
+  // ✅ FIXED useEffect
   useEffect(() => {
     const password = prompt("Enter Admin Password");
 
-    if (password !== "rohit146") {
+    if (password === "rohit146") {
+      setAuthorized(true);
+    } else {
       alert("Unauthorized ❌");
       window.location.href = "/";
-      return;
     }
-
-    fetchProjects();
   }, []);
+
+  // Fetch projects only when authorized
+  useEffect(() => {
+    if (authorized) {
+      fetchProjects();
+    }
+  }, [authorized]);
 
   async function handleImageUpload(): Promise<string | null> {
     if (!imageFile) return null;
@@ -84,9 +90,7 @@ export default function AdminPage() {
     setEditingId(null);
   }
 
-  async function handleSubmit(
-    e: React.FormEvent<HTMLFormElement>
-  ) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
@@ -116,9 +120,10 @@ export default function AdminPage() {
         }),
       });
 
+      alert(editingId ? "Project Updated 🚀" : "Project Added 🔥");
+
       resetForm();
       fetchProjects();
-      alert("Saved Successfully 🚀");
     } catch {
       alert("Something went wrong");
     }
@@ -127,8 +132,7 @@ export default function AdminPage() {
   }
 
   async function handleDelete(id: string) {
-    const confirmDelete = confirm("Delete this project?");
-    if (!confirmDelete) return;
+    if (!confirm("Are you sure?")) return;
 
     await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`,
@@ -151,75 +155,68 @@ export default function AdminPage() {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
+  if (!authorized) return null;
+
   return (
     <div className="min-h-screen bg-black text-white p-10">
       <div className="max-w-6xl mx-auto">
 
-        <div ref={formRef} className="bg-gray-900 p-8 rounded-3xl mb-16">
+        <div ref={formRef} className="bg-gray-900 p-8 rounded-2xl mb-16">
           <h1 className="text-3xl font-bold mb-6 text-center">
-            {editingId ? "Edit Project" : "Add New Project"}
+            {editingId ? "Edit Project" : "Add Project"}
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <input className="w-full p-3 bg-gray-800 rounded"
+              value={title} onChange={(e) => setTitle(e.target.value)}
+              placeholder="Title" required />
 
-            <input type="text" placeholder="Title"
-              className="w-full p-3 rounded bg-gray-800"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
+            <input className="w-full p-3 bg-gray-800 rounded"
+              value={domain} onChange={(e) => setDomain(e.target.value)}
+              placeholder="Domain" required />
 
-            <input type="text" placeholder="Domain"
-              className="w-full p-3 rounded bg-gray-800"
-              value={domain}
-              onChange={(e) => setDomain(e.target.value)}
-              required
-            />
-
-            <textarea placeholder="Description"
-              className="w-full p-3 rounded bg-gray-800"
+            <textarea className="w-full p-3 bg-gray-800 rounded"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              required
-            />
+              placeholder="Description" required />
 
-            <input type="text" placeholder="Tech Stack"
-              className="w-full p-3 rounded bg-gray-800"
+            <input className="w-full p-3 bg-gray-800 rounded"
               value={techStack}
               onChange={(e) => setTechStack(e.target.value)}
-              required
-            />
-
-            <input type="file"
-              className="w-full p-3 rounded bg-gray-800"
-              onChange={(e) => {
-                const file = e.target.files?.[0] || null;
-                setImageFile(file);
-                if (file) {
-                  setPreview(URL.createObjectURL(file));
-                }
-              }}
-            />
-
-            {preview && (
-              <Image
-                src={preview}
-                alt="Preview"
-                width={500}
-                height={200}
-                className="w-full h-48 object-cover rounded-xl"
-              />
-            )}
+              placeholder="Tech Stack" required />
 
             <button
               type="submit"
               disabled={loading}
               className="w-full bg-blue-600 py-3 rounded"
             >
-              {loading ? "Processing..." : "Save"}
+              {loading ? "Processing..." : "Save Project"}
             </button>
-
           </form>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div key={project.id} className="bg-gray-800 p-6 rounded">
+              <h3 className="text-xl mb-2">{project.title}</h3>
+
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={() => handleEdit(project)}
+                  className="bg-yellow-500 px-3 py-1 rounded"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(project.id)}
+                  className="bg-red-600 px-3 py-1 rounded"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
