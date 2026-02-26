@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import Particles from "@/components/Particles";
+
 
 export default function ProjectDetails({ params }: { params: { id: string } }) {
   const [project, setProject] = useState<any>(null);
