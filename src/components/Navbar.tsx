@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full backdrop-blur-md bg-black/70 border-b border-gray-800 z-50">
@@ -7,15 +9,17 @@ export default function Navbar() {
         </h1>
 
         <div className="space-x-8 text-sm">
-          <a href="/" className="hover:text-gray-300 transition">
+          <Link href="/" className="hover:text-gray-300 transition">
             Home
-          </a>
-          <a href="#" className="hover:text-gray-300 transition">
+          </Link>
+
+          <Link href="/#about" className="hover:text-gray-300 transition">
             About
-          </a>
-          <a href="#" className="hover:text-gray-300 transition">
+          </Link>
+
+          <Link href="/#contact" className="hover:text-gray-300 transition">
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
