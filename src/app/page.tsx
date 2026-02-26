@@ -28,11 +28,12 @@ export default function Home() {
           </h1>
 
           <p className="text-gray-400 mt-3 text-lg">
-            Data Science Intern at CloudBlitz | Python | ML | Data Analytics
+            Data Science Intern | Machine Learning Enthusiast | Data Analytics
           </p>
 
           <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-            Computer Science graduate and Data Science Intern at CloudBlitz Pune, turning real-world data into impactful insights with Python and machine learning.
+            Computer Science graduate specializing in Data Science, focused on building
+            intelligent models and transforming real-world data into scalable, actionable insights.
           </p>
 
           <div className="flex gap-4 justify-center mt-8">
@@ -62,13 +63,16 @@ export default function Home() {
         >
           <h2 className="text-3xl font-bold mb-6">About Me</h2>
           <p className="text-gray-400 leading-relaxed">
-            I am a Computer Science graduate with a strong interest in Data Science.
+            I am a Computer Science graduate and Data Science Intern passionate about
+            transforming data into actionable insights. I work with real-world datasets,
+            build machine learning models, and apply statistical analysis to solve
+            complex business problems.
 
-            Currently working as a Data Science Intern at CloudBlitz PUNE, where I analyze real-world datasets, build machine learning models, and derive actionable insights from data.
-
-            I enjoy solving complex problems using Python, applying statistical thinking, and turning raw data into meaningful business intelligence
             <br /><br />
-            My long-term goal is to grow as a data-driven engineer with strong expertise in machine learning and scalable cloud systems.
+
+            With strong proficiency in Python and data-driven thinking, I focus on
+            delivering scalable and impactful solutions. My goal is to grow as a
+            data-driven engineer specializing in machine learning and intelligent systems.
           </p>
         </motion.div>
       </section>
@@ -76,28 +80,38 @@ export default function Home() {
       {/* SKILLS SECTION */}
       <section className="py-20 bg-gray-900 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">Tech Stack</h2>
+          <h2 className="text-3xl font-bold mb-12">Technical Expertise</h2>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
 
             <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Frontend</h3>
-              <p className="text-gray-400">Next.js, React, Tailwind CSS</p>
+              <h3 className="font-semibold mb-3">Programming & Databases</h3>
+              <p className="text-gray-400">
+                Python, SQL, PostgreSQL
+              </p>
             </div>
 
             <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Backend</h3>
-              <p className="text-gray-400">NestJS, Node.js, Django</p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Database</h3>
-              <p className="text-gray-400">PostgreSQL, MySQL</p>
+              <h3 className="font-semibold mb-3">Data Analysis & Visualization</h3>
+              <p className="text-gray-400">
+                Pandas, NumPy, Matplotlib, Seaborn, Excel, Power BI
+              </p>
             </div>
 
             <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
               <h3 className="font-semibold mb-3">Machine Learning</h3>
-              <p className="text-gray-400">Python, scikit-learn, PyTorch</p>
+              <p className="text-gray-400">
+                Scikit-learn, PyTorch, Feature Engineering,
+                Regression, Classification, Model Evaluation
+              </p>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
+              <h3 className="font-semibold mb-3">Tools & Workflow</h3>
+              <p className="text-gray-400">
+                Jupyter Notebook, Git, Data Cleaning,
+                EDA, Statistical Analysis
+              </p>
             </div>
 
           </div>
@@ -111,7 +125,8 @@ export default function Home() {
           Email: rohitsutar1611@gmail.com
         </p>
         <p className="text-gray-400 mt-2">
-          LinkedIn: linkedin.com/in/rohitsagarsutar
+          LinkedIn: linkedin.com/in/rohit-sutar-38b837399
+          GitHub: https://github.com/rohitsutar1611-ops
         </p>
       </section>
 
