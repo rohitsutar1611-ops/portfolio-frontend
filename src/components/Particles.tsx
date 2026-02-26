@@ -1,28 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-
-type Particle = {
-  id: number;
-  size: number;
-  left: number;
-  duration: number;
-};
 
 export default function Particles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-
-  useEffect(() => {
-    const generated = Array.from({ length: 15 }).map((_, i) => ({
-      id: i,
-      size: Math.random() * 6 + 4,
-      left: Math.random() * 100,
-      duration: 10 + Math.random() * 10,
-    }));
-
-    setParticles(generated);
-  }, []);
+  const particles = Array.from({ length: 15 }).map((_, i) => ({
+    id: i,
+    size: 4 + (i % 6),
+    left: (i * 7) % 100,
+    duration: 10 + (i % 5),
+  }));
 
   return (
     <div className="absolute inset-0 overflow-hidden -z-10">
@@ -36,9 +22,7 @@ export default function Particles() {
             left: `${p.left}%`,
             top: "-10px",
           }}
-          animate={{
-            y: ["0%", "120vh"],
-          }}
+          animate={{ y: ["0%", "120vh"] }}
           transition={{
             duration: p.duration,
             repeat: Infinity,
