@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,12 +17,12 @@ type Project = {
   imageUrl?: string;
 };
 
-export default function ProjectDetails({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function ProjectDetails() {
+  const params = useParams();
+  const id = params?.id as string;
+
   const [project, setProject] = useState<Project | null>(null);
+
   const { scrollY } = useScroll();
   const yParallax = useTransform(scrollY, [0, 500], [0, 150]);
 
@@ -29,7 +30,7 @@ export default function ProjectDetails({
     async function fetchProject() {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/projects/${params.id}`
+          `${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`
         );
         const data = await res.json();
         setProject(data);
@@ -38,8 +39,8 @@ export default function ProjectDetails({
       }
     }
 
-    fetchProject();
-  }, [params.id]);
+    if (id) fetchProject();
+  }, [id]);
 
   if (!project) {
     return (
@@ -118,10 +119,6 @@ export default function ProjectDetails({
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
           className="flex gap-6 flex-wrap"
         >
           {project.githubLink && (
