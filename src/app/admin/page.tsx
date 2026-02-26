@@ -3,7 +3,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-
 type Project = {
   id: string;
   title: string;
@@ -16,6 +15,9 @@ type Project = {
 };
 
 export default function AdminPage() {
+  // ✅ Hook MUST be at top level
+  const router = useRouter();
+
   const [projects, setProjects] = useState<Project[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [authorized, setAuthorized] = useState(false);
@@ -27,10 +29,10 @@ export default function AdminPage() {
   const [techStack, setTechStack] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ✅ AUTH FUNCTION (NO useEffect)
+  // ✅ AUTH FUNCTION
   async function initAdmin() {
     const password = prompt("Enter Admin Password");
-    const router = useRouter();
+
     if (password !== "rohit146") {
       alert("Unauthorized ❌");
       router.push("/");
@@ -111,7 +113,7 @@ export default function AdminPage() {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
-  // 🔥 FIRST CLICK AUTH TRIGGER
+  // 🔥 AUTH SCREEN
   if (!authorized) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
