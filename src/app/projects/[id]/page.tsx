@@ -4,44 +4,61 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import Particles from "@/components/Particles";
 
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string;
+  githubLink?: string;
+  liveLink?: string;
+  imageUrl?: string;
+};
 
-export default function ProjectDetails({ params }: { params: { id: string } }) {
-  const [project, setProject] = useState<any>(null);
+export default function ProjectDetails({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const [project, setProject] = useState<Project | null>(null);
   const { scrollY } = useScroll();
-
   const yParallax = useTransform(scrollY, [0, 500], [0, 150]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/projects/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => setProject(data));
+    async function fetchProject() {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/projects/${params.id}`
+        );
+        const data = await res.json();
+        setProject(data);
+      } catch (error) {
+        console.error("Failed to fetch project:", error);
+      }
+    }
+
+    fetchProject();
   }, [params.id]);
 
   if (!project) {
-  return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <div className="animate-pulse space-y-6 w-[400px]">
-
-        <div className="h-10 bg-gray-700 rounded-xl"></div>
-
-        <div className="h-4 bg-gray-700 rounded"></div>
-        <div className="h-4 bg-gray-700 rounded"></div>
-        <div className="h-4 bg-gray-700 rounded"></div>
-
-        <div className="h-32 bg-gray-800 rounded-2xl"></div>
-
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-pulse space-y-6 w-[400px]">
+          <div className="h-10 bg-gray-700 rounded-xl"></div>
+          <div className="h-4 bg-gray-700 rounded"></div>
+          <div className="h-4 bg-gray-700 rounded"></div>
+          <div className="h-4 bg-gray-700 rounded"></div>
+          <div className="h-32 bg-gray-800 rounded-2xl"></div>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white overflow-hidden">
-      
       <Particles />
 
-      {/* HERO PARALLAX */}
       {project.imageUrl && (
         <motion.div style={{ y: yParallax }} className="relative h-[450px]">
           <Image
@@ -63,10 +80,7 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
         </motion.div>
       )}
 
-      {/* CONTENT */}
       <div className="max-w-5xl mx-auto px-6 py-20 space-y-16">
-
-        {/* Description Fade-in */}
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,13 +88,14 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
           viewport={{ once: true }}
           className="bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-3xl shadow-2xl"
         >
-          <h2 className="text-2xl font-semibold mb-6">About This Project</h2>
+          <h2 className="text-2xl font-semibold mb-6">
+            About This Project
+          </h2>
           <p className="text-gray-400 leading-relaxed">
             {project.description}
           </p>
         </motion.div>
 
-        {/* Tech Stack */}
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +105,7 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
           <h3 className="text-xl font-semibold mb-6">Tech Stack</h3>
 
           <div className="flex flex-wrap gap-4">
-            {project.techStack?.split(",").map((tech: string, index: number) => (
+            {project.techStack?.split(",").map((tech, index) => (
               <motion.span
                 key={index}
                 whileHover={{ scale: 1.1 }}
@@ -102,7 +117,6 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
           </div>
         </motion.div>
 
-        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -137,7 +151,6 @@ export default function ProjectDetails({ params }: { params: { id: string } }) {
             ← Back
           </Link>
         </motion.div>
-
       </div>
     </div>
   );
