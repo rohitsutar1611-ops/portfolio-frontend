@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
+
 
 type Project = {
   id: string;
@@ -28,10 +30,10 @@ export default function AdminPage() {
   // ✅ AUTH FUNCTION (NO useEffect)
   async function initAdmin() {
     const password = prompt("Enter Admin Password");
-
+    const router = useRouter();
     if (password !== "rohit146") {
       alert("Unauthorized ❌");
-      window.location.href = "/";
+      router.push("/");
       return;
     }
 
