@@ -1,17 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
+
+type Particle = {
+  id: number;
+  size: number;
+  left: number;
+  duration: number;
+};
 
 export default function Particles() {
-  // ✅ Generate random values once (pure render)
-  const particles = useMemo(() => {
-    return Array.from({ length: 15 }).map((_, i) => ({
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    const generated = Array.from({ length: 15 }).map((_, i) => ({
       id: i,
       size: Math.random() * 6 + 4,
       left: Math.random() * 100,
       duration: 10 + Math.random() * 10,
     }));
+
+    setParticles(generated);
   }, []);
 
   return (
@@ -32,7 +42,6 @@ export default function Particles() {
           transition={{
             duration: p.duration,
             repeat: Infinity,
-            repeatType: "loop",
             ease: "linear",
           }}
         />
