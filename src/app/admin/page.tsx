@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 type Project = {
   id: string;
@@ -23,11 +23,21 @@ export default function AdminPage() {
   const [domain, setDomain] = useState("");
   const [description, setDescription] = useState("");
   const [techStack, setTechStack] = useState("");
-  const [githubLink, setGithubLink] = useState("");
-  const [liveLink, setLiveLink] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // ✅ AUTH FUNCTION (NO useEffect)
+  async function initAdmin() {
+    const password = prompt("Enter Admin Password");
+
+    if (password !== "rohit146") {
+      alert("Unauthorized ❌");
+      window.location.href = "/";
+      return;
+    }
+
+    setAuthorized(true);
+    await fetchProjects();
+  }
 
   async function fetchProjects() {
     try {
@@ -41,66 +51,11 @@ export default function AdminPage() {
     }
   }
 
-  // ✅ FIXED useEffect
-  useEffect(() => {
-    const password = prompt("Enter Admin Password");
-
-    if (password === "rohit146") {
-      setAuthorized(true);
-    } else {
-      alert("Unauthorized ❌");
-      window.location.href = "/";
-    }
-  }, []);
-
-  // Fetch projects only when authorized
-  useEffect(() => {
-    if (authorized) {
-      fetchProjects();
-    }
-  }, [authorized]);
-
-  async function handleImageUpload(): Promise<string | null> {
-    if (!imageFile) return null;
-
-    const formData = new FormData();
-    formData.append("file", imageFile);
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/upload`,
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    const data = await res.json();
-    return data.imageUrl;
-  }
-
-  function resetForm() {
-    setTitle("");
-    setDomain("");
-    setDescription("");
-    setTechStack("");
-    setGithubLink("");
-    setLiveLink("");
-    setImageFile(null);
-    setPreview(null);
-    setEditingId(null);
-  }
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
 
     try {
-      let imageUrl: string | null = null;
-
-      if (imageFile) {
-        imageUrl = await handleImageUpload();
-      }
-
       const method = editingId ? "PUT" : "POST";
       const url = editingId
         ? `${process.env.NEXT_PUBLIC_API_URL}/projects/${editingId}`
@@ -114,18 +69,20 @@ export default function AdminPage() {
           domain,
           description,
           techStack,
-          githubLink,
-          liveLink,
-          imageUrl,
         }),
       });
 
-      alert(editingId ? "Project Updated 🚀" : "Project Added 🔥");
+      alert(editingId ? "Updated 🚀" : "Added 🔥");
 
-      resetForm();
-      fetchProjects();
+      setTitle("");
+      setDomain("");
+      setDescription("");
+      setTechStack("");
+      setEditingId(null);
+
+      await fetchProjects();
     } catch {
-      alert("Something went wrong");
+      alert("Error occurred");
     }
 
     setLoading(false);
@@ -139,7 +96,7 @@ export default function AdminPage() {
       { method: "DELETE" }
     );
 
-    fetchProjects();
+    await fetchProjects();
   }
 
   function handleEdit(project: Project) {
@@ -148,14 +105,23 @@ export default function AdminPage() {
     setDomain(project.domain);
     setDescription(project.description);
     setTechStack(project.techStack);
-    setGithubLink(project.githubLink || "");
-    setLiveLink(project.liveLink || "");
-    setPreview(project.imageUrl || null);
 
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
-  if (!authorized) return null;
+  // 🔥 FIRST CLICK AUTH TRIGGER
+  if (!authorized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+        <button
+          onClick={initAdmin}
+          className="bg-blue-600 px-6 py-3 rounded-xl"
+        >
+          Enter Admin Panel
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white p-10">
@@ -167,23 +133,37 @@ export default function AdminPage() {
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input className="w-full p-3 bg-gray-800 rounded"
-              value={title} onChange={(e) => setTitle(e.target.value)}
-              placeholder="Title" required />
+            <input
+              className="w-full p-3 bg-gray-800 rounded"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Title"
+              required
+            />
 
-            <input className="w-full p-3 bg-gray-800 rounded"
-              value={domain} onChange={(e) => setDomain(e.target.value)}
-              placeholder="Domain" required />
+            <input
+              className="w-full p-3 bg-gray-800 rounded"
+              value={domain}
+              onChange={(e) => setDomain(e.target.value)}
+              placeholder="Domain"
+              required
+            />
 
-            <textarea className="w-full p-3 bg-gray-800 rounded"
+            <textarea
+              className="w-full p-3 bg-gray-800 rounded"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description" required />
+              placeholder="Description"
+              required
+            />
 
-            <input className="w-full p-3 bg-gray-800 rounded"
+            <input
+              className="w-full p-3 bg-gray-800 rounded"
               value={techStack}
               onChange={(e) => setTechStack(e.target.value)}
-              placeholder="Tech Stack" required />
+              placeholder="Tech Stack"
+              required
+            />
 
             <button
               type="submit"
