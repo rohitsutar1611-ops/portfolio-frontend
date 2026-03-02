@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 export default function Home() {
   return (
@@ -122,7 +123,7 @@ export default function Home() {
       <section id="contact" className="py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
         <p className="text-gray-400">
-          <a href="mailto:rohitsutar1611@gmail.com">Email</a>
+          <a href="rohitsutar1611@gmail.com">Email</a>
         </p>
         <p className="text-gray-400 mt-2">
           <a href="https://linkedin.com/in/rohit-sutar-38b837399">LinkedIn</a>
