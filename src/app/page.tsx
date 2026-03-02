@@ -122,15 +122,29 @@ export default function Home() {
       {/* CONTACT SECTION */}
       <section id="contact" className="py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
-        <p className="text-gray-400">
-          <a href="rohitsutar1611@gmail.com">Email</a>
-        </p>
-        <p className="text-gray-400 mt-2">
-          <a href="https://linkedin.com/in/rohit-sutar-38b837399">LinkedIn</a>
-        </p>
-        <p className="text-gray-400 mt-2">
-          <a href="https://github.com/rohitsutar1611-ops">GitHub</a>
-        </p>
+        <a
+          href="mailto:yourmail@gmail.com"
+          target="_blank"
+          className="hover:text-blue-500 transition"
+        >
+          <Mail />
+        </a>
+
+        <a
+          href="https://linkedin.com/in/yourprofile"
+          target="_blank"
+          className="hover:text-blue-600 transition"
+        >
+          <Linkedin />
+        </a>
+
+        <a
+          href="https://github.com/yourprofile"
+          target="_blank"
+          className="hover:text-gray-400 transition"
+        >
+          <Github />
+          </a>
       </section>
 
     </main>
