@@ -20,3 +20,13 @@ html {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+.swiper-button-next,
+.swiper-button-prev {
+  color: #22d3ee !important;
+  transition: 0.3s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scale(1.2);
+}

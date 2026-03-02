@@ -164,8 +164,12 @@ export default function Home() {
       </section>
 
       {/* PROJECTS SECTION */}
-      <section
+      <motion.section
         id="projects"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
         className="py-16 sm:py-24 bg-[#0a0f1f] px-6"
       >
         <div className="max-w-6xl mx-auto text-center">
@@ -176,7 +180,10 @@ export default function Home() {
           <Swiper
             modules={[Navigation, Autoplay]}
             navigation
-            autoplay={{ delay: 3000 }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
             loop
             spaceBetween={30}
             breakpoints={{
@@ -187,7 +194,7 @@ export default function Home() {
           >
             {[
               {
-                title: "Credit Risk Scoring System (BFSI Project) ",
+                title: "Credit Risk Scoring System (BFSI Project)",
                 desc: "An end-to-end BFSI Credit Risk Scoring system using logistic regression, scorecards, fairness analysis, and Streamlit dashboards to enable explainable, compliant, and data-driven lending decisions.",
                 img: "/Credit Risk Scoring System.png",
                 github: "https://github.com/rohitsutar1611-ops/Credit_Risk_Project",
@@ -195,7 +202,7 @@ export default function Home() {
               },
               {
                 title: "Strategic Procurement Intelligence Dashboard",
-                desc: "An AI-powered Strategic Procurement Decision Support System built using Streamlit, Machine Learning, and the Kraljic Matrix Framework.This platform transforms traditional procurement analysis into a predictive and prescriptive intelligence tool for executive decision-making.",
+                desc: "An AI-powered Strategic Procurement Decision Support System built using Streamlit, Machine Learning, and the Kraljic Matrix Framework. This platform transforms traditional procurement analysis into a predictive and prescriptive intelligence tool for executive decision-making.",
                 img: "/Strategic Procurement.png",
                 github: "https://github.com/rohitsutar1611-ops/strategic-procurement-intelligence",
                 live: "https://strategic-procurement-intelligence0146.streamlit.app/",
@@ -214,11 +221,11 @@ export default function Home() {
                     onClick={() =>
                       setFlippedIndex(flippedIndex === index ? null : index)
                     }
-                    className={`relative w-full h-80 transition-transform duration-700 transform-style cursor-pointer ${flippedIndex === index ? "rotate-y-180" : ""
+                    className={`relative w-full h-80 transition-all duration-700 ease-in-out transform-style cursor-pointer hover:scale-105 hover:-translate-y-2 ${flippedIndex === index ? "rotate-y-180" : ""
                       }`}
                   >
                     {/* FRONT */}
-                    <div className="absolute w-full h-full backface-hidden bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden">
+                    <div className="absolute w-full h-full backface-hidden bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg">
                       <img
                         src={project.img}
                         alt={project.title}
@@ -228,19 +235,19 @@ export default function Home() {
                         <h3 className="text-lg font-semibold text-cyan-400">
                           {project.title}
                         </h3>
-                        <p className="text-xs text-gray-500 mt-2">
+                        <p className="text-xs text-gray-400 mt-2">
                           Tap to view details
                         </p>
                       </div>
                     </div>
 
                     {/* BACK */}
-                    <div className="absolute w-full h-full rotate-y-180 backface-hidden bg-[#111827] border border-cyan-500/30 rounded-2xl p-6 flex flex-col justify-between">
+                    <div className="absolute w-full h-full rotate-y-180 backface-hidden bg-[#111827] border border-cyan-500/30 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
                       <div>
                         <h3 className="text-lg font-semibold text-purple-400 mb-3">
                           {project.title}
                         </h3>
-                        <p className="text-gray-400 text-sm">
+                        <p className="text-gray-400 text-sm leading-relaxed">
                           {project.desc}
                         </p>
                       </div>
@@ -250,7 +257,7 @@ export default function Home() {
                           href={project.github}
                           target="_blank"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-white hover:text-cyan-400 transition"
+                          className="text-white hover:text-cyan-400 hover:scale-125 transition-all duration-300"
                         >
                           <Github size={24} />
                         </a>
@@ -259,7 +266,7 @@ export default function Home() {
                           href={project.live}
                           target="_blank"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-white hover:text-purple-400 transition"
+                          className="text-white hover:text-purple-400 hover:scale-125 transition-all duration-300"
                         >
                           <ExternalLink size={24} />
                         </a>
@@ -271,7 +278,7 @@ export default function Home() {
             ))}
           </Swiper>
         </div>
-      </section>
+      </motion.section>
       {/* SKILLS SECTION */}
       <section className="relative py-28 bg-[#0a0f1f] px-6 overflow-hidden">
 
