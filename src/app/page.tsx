@@ -104,7 +104,7 @@ export default function Home() {
 
           <div className="flex gap-4 justify-center mt-10">
             <Link
-              href="/projects"
+              href="#projects"
               className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 hover:scale-105 transition duration-300 shadow-lg shadow-cyan-500/30"
             >
               View Projects
@@ -152,6 +152,54 @@ export default function Home() {
             I focus on developing scalable, real-world solutions that combine
             analytical depth with practical business impact.
           </motion.p>
+        </div>
+      </section>
+
+      {/* PROJECTS SECTION */}
+      <section
+        id="projects"
+        className="py-16 sm:py-24 bg-[#0f172a] px-6"
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-12 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
+
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+
+            {[
+              {
+                title: "Sales Forecasting Model",
+                desc: "Time-series forecasting using ARIMA & LSTM.",
+              },
+              {
+                title: "Customer Segmentation",
+                desc: "Clustering using K-Means & business insights.",
+              },
+              {
+                title: "BI Dashboard",
+                desc: "Interactive Power BI dashboard for KPIs.",
+              },
+            ].map((project, index) => (
+              <div
+                key={index}
+                className="min-w-[300px] snap-center bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:scale-105 transition"
+              >
+                <h3 className="text-xl font-semibold text-cyan-400 mb-3">
+                  {project.title}
+                </h3>
+
+                <p className="text-gray-400 text-sm">
+                  {project.desc}
+                </p>
+
+                <button className="mt-4 text-sm text-purple-400 hover:underline">
+                  View Details
+                </button>
+              </div>
+            ))}
+
+          </div>
         </div>
       </section>
 
