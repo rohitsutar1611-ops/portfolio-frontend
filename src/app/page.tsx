@@ -122,13 +122,13 @@ export default function Home() {
       <section id="contact" className="py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
         <p className="text-gray-400">
-          Email: rohitsutar1611@gmail.com
+          <a href="mailto:rohitsutar1611@gmail.com">Email</a>
         </p>
         <p className="text-gray-400 mt-2">
-          LinkedIn: linkedin.com/in/rohit-sutar-38b837399
+          <a href="https://linkedin.com/in/rohit-sutar-38b837399">LinkedIn</a>
         </p>
         <p className="text-gray-400 mt-2">
-          GitHub: https://github.com/rohitsutar1611-ops
+          <a href="https://github.com/rohitsutar1611-ops">GitHub</a>
         </p>
       </section>
 
