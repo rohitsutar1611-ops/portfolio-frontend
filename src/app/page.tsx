@@ -120,7 +120,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contact" className="flex justify-center items-center gap-6 mt-6 p-3 bg-gray-800 rounded-full hover:bg-blue-500 hover:scale-110 transition duration-300">
+      <section id="contact" className="flex justify-center items-center gap-6 mt-6 ">
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
         <a
           href="mailto:rohitsutar1611@gmail.com"
