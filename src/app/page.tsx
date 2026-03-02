@@ -120,31 +120,40 @@ export default function Home() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contact" className="flex justify-center items-center gap-6 mt-6 ">
+      <section
+        id="contact"
+        className="flex flex-col items-center mt-12"
+      >
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
-        <a
-          href="mailto:rohitsutar1611@gmail.com"
-          target="_blank"
-          className="hover:text-blue-500 transition"
-        >
-          <Mail />
-        </a>
 
-        <a
-          href="https://www.linkedin.com/in/rohit-sutar-38b837399 "
-          target="_blank"
-          className="hover:text-blue-600 transition"
-        >
-          <Linkedin />
-        </a>
-
-        <a
-          href="https://github.com/rohitsutar1611-ops"
-          target="_blank"
-          className="hover:text-gray-400 transition"
-        >
-          <Github />
+        <div className="flex justify-center items-center gap-6">
+          <a
+            href="mailto:rohitsutar1611@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-500 transition"
+          >
+            <Mail size={28} />
           </a>
+
+          <a
+            href="https://www.linkedin.com/in/rohit-sutar-38b837399"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-600 transition"
+          >
+            <Linkedin size={28} />
+          </a>
+
+          <a
+            href="https://github.com/rohitsutar1611-ops"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-400 transition"
+          >
+            <Github size={28} />
+          </a>
+        </div>
       </section>
 
     </main>
