@@ -123,7 +123,7 @@ export default function Home() {
       <section id="contact" className="py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
         <a
-          href="mailto:yourmail@gmail.com"
+          href="mailto:rohitsutar1611@gmail.com"
           target="_blank"
           className="hover:text-blue-500 transition"
         >
@@ -131,7 +131,7 @@ export default function Home() {
         </a>
 
         <a
-          href="https://linkedin.com/in/yourprofile"
+          href="https://www.linkedin.com/in/rohit-sutar-38b837399 "
           target="_blank"
           className="hover:text-blue-600 transition"
         >
@@ -139,7 +139,7 @@ export default function Home() {
         </a>
 
         <a
-          href="https://github.com/yourprofile"
+          href="https://github.com/rohitsutar1611-ops"
           target="_blank"
           className="hover:text-gray-400 transition"
         >
