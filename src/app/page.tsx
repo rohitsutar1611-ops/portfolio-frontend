@@ -20,6 +20,7 @@ import {
 } from "react-icons/si";
 
 import { MdBarChart } from "react-icons/md";
+import { Typewriter } from "react-simple-typewriter";
 
 /* Animation Variant */
 const cardVariants = {
@@ -54,8 +55,21 @@ export default function Home() {
             Rohit Sagar Sutar
           </h1>
 
-          <p className="text-gray-400 mt-3 text-lg">
-            Data Science Intern | Machine Learning Enthusiast | Data Analytics
+          <p className="text-gray-400 mt-4 text-lg font-medium">
+            <Typewriter
+              words={[
+                "Data Science Intern",
+                "Machine Learning Enthusiast",
+                "Data Analyst",
+                "AI & Predictive Modeling Explorer"
+              ]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={40}
+              delaySpeed={1500}
+            />
           </p>
 
           <div className="flex gap-4 justify-center mt-8">
@@ -74,6 +88,41 @@ export default function Home() {
             </Link>
           </div>
         </motion.div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section className="py-24 bg-gray-900 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold mb-12"
+          >
+            About Me
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-gray-400 leading-relaxed text-lg"
+          >
+            I am a Computer Science graduate specializing in Data Science.
+            My interests include machine learning, predictive modeling,
+            and data visualization. I enjoy transforming raw data into
+            meaningful insights that drive business decisions.
+            <br /><br />
+            I have hands-on experience with Python, SQL, machine learning
+            frameworks, and analytical tools. I continuously explore new
+            technologies to strengthen my problem-solving abilities and
+            stay aligned with industry trends.
+          </motion.p>
+
+        </div>
       </section>
 
       {/* SKILLS SECTION */}
@@ -179,7 +228,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
 
         <div className="flex justify-center items-center gap-6">
-          {[ 
+          {[
             { icon: <Mail size={28} />, link: "mailto:rohitsutar1611@gmail.com" },
             { icon: <Linkedin size={28} />, link: "https://www.linkedin.com/in/rohit-sutar-38b837399" },
             { icon: <Github size={28} />, link: "https://github.com/rohitsutar1611-ops" },
