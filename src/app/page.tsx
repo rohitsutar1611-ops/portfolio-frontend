@@ -122,7 +122,7 @@ export default function Home() {
       {/* CONTACT SECTION */}
       <section
         id="contact"
-        className="flex flex-col items-center mt-12"
+        className="flex flex-col items-center py-20"
       >
         <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
 
