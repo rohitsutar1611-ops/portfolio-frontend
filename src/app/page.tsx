@@ -194,7 +194,7 @@ export default function Home() {
                 live: "#",
               },
               {
-                title: "Customer Segmentation",
+                title: "Strategic Procurement Intelligence Dashboard",
                 desc: "An AI-powered Strategic Procurement Decision Support System built using Streamlit, Machine Learning, and the Kraljic Matrix Framework.This platform transforms traditional procurement analysis into a predictive and prescriptive intelligence tool for executive decision-making.",
                 img: "/Strategic Procurement.png",
                 github: "https://github.com/rohitsutar1611-ops/strategic-procurement-intelligence",
