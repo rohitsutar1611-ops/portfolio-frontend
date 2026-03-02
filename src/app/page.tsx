@@ -3,7 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter  } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter } from "lucide-react";
+import {
+  FaPython,
+  FaGitAlt,
+  FaDatabase
+} from "react-icons/fa";
+
+import {
+  SiPostgresql,
+  SiPandas,
+  SiNumpy,
+  SiPytorch,
+  SiScikitlearn,
+  SiJupyter
+} from "react-icons/si";
+
+import { MdBarChart } from "react-icons/md";
 
 export default function Home() {
   return (
@@ -79,40 +95,132 @@ export default function Home() {
       </section>
 
       {/* SKILLS SECTION */}
-      <section className="py-20 bg-gray-900 px-6">
+
+      <section className="py-24 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">Technical Expertise</h2>
+          <h2 className="text-4xl font-bold mb-16 tracking-wide">
+            Technical Expertise
+          </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Programming & Databases</h3>
-              <p className="text-gray-400">
-                Python, SQL, PostgreSQL
-              </p>
+            {/* CARD */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 
+      p-6 rounded-2xl transition duration-300 
+      hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+
+              <h3 className="font-semibold mb-6 text-lg">
+                Programming & Databases
+              </h3>
+
+              <div className="space-y-4 text-gray-300">
+
+                <div className="flex items-center gap-3 justify-center hover:text-yellow-400 transition">
+                  <FaPython size={20} />
+                  <span>Python</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-green-400 transition">
+                  <FaDatabase size={20} />
+                  <span>SQL</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-blue-400 transition">
+                  <SiPostgresql size={20} />
+                  <span>PostgreSQL</span>
+                </div>
+
+              </div>
             </div>
 
-            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Data Analysis & Visualization</h3>
-              <p className="text-gray-400">
-                Pandas, NumPy, Matplotlib, Seaborn, Excel, Power BI
-              </p>
+            {/* DATA ANALYSIS */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 
+      p-6 rounded-2xl transition duration-300 
+      hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)]">
+
+              <h3 className="font-semibold mb-6 text-lg">
+                Data Analysis & Visualization
+              </h3>
+
+              <div className="space-y-4 text-gray-300">
+
+                <div className="flex items-center gap-3 justify-center hover:text-blue-300 transition">
+                  <SiPandas size={20} />
+                  <span>Pandas</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-indigo-300 transition">
+                  <SiNumpy size={20} />
+                  <span>NumPy</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-pink-300 transition">
+                  <MdBarChart size={20} />
+                  <span>Matplotlib / Seaborn</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-green-300 transition">
+                  <MdBarChart size={20} />
+                  <span>Excel / Power BI</span>
+                </div>
+
+              </div>
             </div>
 
-            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Machine Learning</h3>
-              <p className="text-gray-400">
-                Scikit-learn, PyTorch, Feature Engineering,
-                Regression, Classification, Model Evaluation
-              </p>
+            {/* MACHINE LEARNING */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 
+      p-6 rounded-2xl transition duration-300 
+      hover:scale-105 hover:shadow-[0_0_30px_rgba(234,88,12,0.3)]">
+
+              <h3 className="font-semibold mb-6 text-lg">
+                Machine Learning
+              </h3>
+
+              <div className="space-y-4 text-gray-300">
+
+                <div className="flex items-center gap-3 justify-center hover:text-orange-400 transition">
+                  <SiScikitlearn size={20} />
+                  <span>Scikit-learn</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-orange-500 transition">
+                  <SiPytorch size={20} />
+                  <span>PyTorch</span>
+                </div>
+
+                <div className="text-sm text-gray-400 mt-4 leading-relaxed">
+                  Feature Engineering, Regression, Classification, Model Evaluation
+                </div>
+
+              </div>
             </div>
 
-            <div className="bg-gray-800 p-6 rounded-2xl hover:scale-105 transition">
-              <h3 className="font-semibold mb-3">Tools & Workflow</h3>
-              <p className="text-gray-400">
-                Jupyter Notebook, Git, Data Cleaning,
-                EDA, Statistical Analysis
-              </p>
+            {/* TOOLS */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 
+      p-6 rounded-2xl transition duration-300 
+      hover:scale-105 hover:shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+
+              <h3 className="font-semibold mb-6 text-lg">
+                Tools & Workflow
+              </h3>
+
+              <div className="space-y-4 text-gray-300">
+
+                <div className="flex items-center gap-3 justify-center hover:text-purple-300 transition">
+                  <SiJupyter size={20} />
+                  <span>Jupyter Notebook</span>
+                </div>
+
+                <div className="flex items-center gap-3 justify-center hover:text-red-400 transition">
+                  <FaGitAlt size={20} />
+                  <span>Git</span>
+                </div>
+
+                <div className="text-sm text-gray-400 mt-4 leading-relaxed">
+                  Data Cleaning, EDA, Statistical Analysis
+                </div>
+
+              </div>
             </div>
 
           </div>
@@ -160,7 +268,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="p-3 bg-gray-800 rounded-full hover:bg-sky-500 hover:scale-110 transition duration-300"
           >
-            <Twitter  size={28} />
+            <Twitter size={28} />
           </a>
         </div>
       </section>
