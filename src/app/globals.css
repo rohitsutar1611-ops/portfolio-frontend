@@ -30,3 +30,7 @@ html {
 .swiper-button-prev:hover {
   transform: scale(1.2);
 }
+.transform-style {
+  transform-style: preserve-3d;
+  will-change: transform;
+}

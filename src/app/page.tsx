@@ -196,14 +196,14 @@ export default function Home() {
               {
                 title: "Credit Risk Scoring System (BFSI Project)",
                 desc: "An end-to-end BFSI Credit Risk Scoring system using logistic regression, scorecards, fairness analysis, and Streamlit dashboards to enable explainable, compliant, and data-driven lending decisions.",
-                img: "/Credit Risk Scoring System.png",
+                img: "/credit-risk-scoring-system.png",
                 github: "https://github.com/rohitsutar1611-ops/Credit_Risk_Project",
                 live: "#",
               },
               {
                 title: "Strategic Procurement Intelligence Dashboard",
                 desc: "An AI-powered Strategic Procurement Decision Support System built using Streamlit, Machine Learning, and the Kraljic Matrix Framework. This platform transforms traditional procurement analysis into a predictive and prescriptive intelligence tool for executive decision-making.",
-                img: "/Strategic Procurement.png",
+                img: "/strategic-procurement.png",
                 github: "https://github.com/rohitsutar1611-ops/strategic-procurement-intelligence",
                 live: "https://strategic-procurement-intelligence0146.streamlit.app/",
               },
@@ -216,13 +216,13 @@ export default function Home() {
               },
             ].map((project, index) => (
               <SwiperSlide key={index}>
-                <div className="perspective">
+                <div className="perspective hover:scale-105 hover:-translate-y-2 transition-transform duration-300">
                   <div
                     onClick={() =>
                       setFlippedIndex(flippedIndex === index ? null : index)
                     }
-                    className={`relative w-full h-80 transition-all duration-700 ease-in-out transform-style cursor-pointer hover:scale-105 hover:-translate-y-2 ${flippedIndex === index ? "rotate-y-180" : ""
-                      }`}
+                    className={`transform-style cursor-pointer transition-transform duration-300 ease-out
+                      `}
                   >
                     {/* FRONT */}
                     <div className="absolute w-full h-full backface-hidden bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg">
