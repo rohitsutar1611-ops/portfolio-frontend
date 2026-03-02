@@ -84,7 +84,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="flex justify-center gap-12 mt-12"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12 text-center"
           >
             <div>
               <h3 className="text-3xl font-bold text-cyan-400">3</h3>
