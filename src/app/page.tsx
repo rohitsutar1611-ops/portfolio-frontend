@@ -131,7 +131,7 @@ export default function Home() {
             href="mailto:rohitsutar1611@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-500 transition"
+            className="p-3 bg-gray-800 rounded-full hover:bg-sky-500 hover:scale-110 transition duration-300"
           >
             <Mail size={28} />
           </a>
@@ -140,7 +140,7 @@ export default function Home() {
             href="https://www.linkedin.com/in/rohit-sutar-38b837399"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 transition"
+            className="p-3 bg-gray-800 rounded-full hover:bg-sky-500 hover:scale-110 transition duration-300"
           >
             <Linkedin size={28} />
           </a>
@@ -149,7 +149,7 @@ export default function Home() {
             href="https://github.com/rohitsutar1611-ops"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-400 transition"
+            className="p-3 bg-gray-800 rounded-full hover:bg-sky-500 hover:scale-110 transition duration-300"
           >
             <Github size={28} />
           </a>
