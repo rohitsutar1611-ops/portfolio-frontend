@@ -177,19 +177,38 @@ export default function Home() {
             {[
               {
                 title: "Programming & Databases",
-                items: ["Python", "SQL", "PostgreSQL"]
+                items: [
+                  { icon: <FaPython />, text: "Python" },
+                  { icon: <FaDatabase />, text: "SQL" },
+                  { icon: <SiPostgresql />, text: "PostgreSQL" }
+                ]
               },
               {
                 title: "Data Analysis & Visualization",
-                items: ["Pandas", "NumPy", "Matplotlib / Seaborn", "Excel / Power BI"]
+                items: [
+                  { icon: <SiPandas />, text: "Pandas" },
+                  { icon: <SiNumpy />, text: "NumPy" },
+                  { icon: <MdBarChart />, text: "Matplotlib / Seaborn" },
+                  { icon: <MdBarChart />, text: "Excel / Power BI" }
+                ]
               },
               {
                 title: "Machine Learning",
-                items: ["Scikit-learn", "PyTorch"]
+                items: [
+                  { icon: <SiScikitlearn />, text: "Scikit-learn" },
+                  { icon: <SiPytorch />, text: "PyTorch" }
+                ],
+                extra:
+                  "Feature Engineering, Regression, Classification, Model Evaluation"
               },
               {
                 title: "Tools & Workflow",
-                items: ["Jupyter Notebook", "Git"]
+                items: [
+                  { icon: <SiJupyter />, text: "Jupyter Notebook" },
+                  { icon: <FaGitAlt />, text: "Git" }
+                ],
+                extra:
+                  "Data Cleaning, EDA, Statistical Analysis"
               }
             ].map((card, index) => (
               <motion.div
@@ -199,8 +218,8 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 className="bg-white/5 backdrop-blur-lg border border-white/10 
-                p-6 rounded-2xl transition duration-300 
-                hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,255,0.3)]"
+          p-6 rounded-2xl transition duration-300 
+          hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,255,0.3)]"
               >
                 <h3 className="font-semibold mb-6 text-lg text-cyan-400">
                   {card.title}
@@ -210,19 +229,26 @@ export default function Home() {
                   {card.items.map((item, i) => (
                     <div
                       key={i}
-                      className="hover:text-cyan-400 transition"
+                      className="flex items-center gap-3 justify-center 
+                hover:text-cyan-400 transition text-base"
                     >
-                      {item}
+                      <span className="text-xl">{item.icon}</span>
+                      <span>{item.text}</span>
                     </div>
                   ))}
                 </div>
+
+                {card.extra && (
+                  <div className="text-sm text-gray-400 mt-4 leading-relaxed">
+                    {card.extra}
+                  </div>
+                )}
               </motion.div>
             ))}
 
           </div>
         </div>
       </section>
-
       {/* CONTACT SECTION */}
       <section
         id="contact"
