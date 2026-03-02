@@ -52,7 +52,7 @@ export default function Home() {
           />
 
           <h1 className="text-4xl md:text-6xl font-bold mt-6">
-            Rohit Sagar Sutar
+            Rohit <span className="text-blue-500">Sagar Sutar</span>
           </h1>
 
           <p className="text-gray-400 mt-4 text-lg font-medium">
@@ -71,6 +71,28 @@ export default function Home() {
               delaySpeed={1500}
             />
           </p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="flex justify-center gap-12 mt-12 text-center"
+          >
+            <div>
+              <h3 className="text-3xl font-bold text-white">2</h3>
+              <p className="text-gray-400 text-sm">Flagship AI Projects</p>
+            </div>
+
+            <div>
+              <h3 className="text-3xl font-bold text-white">End-to-End</h3>
+              <p className="text-gray-400 text-sm">ML Pipelines</p>
+            </div>
+
+            <div>
+              <h3 className="text-3xl font-bold text-white">Executive</h3>
+              <p className="text-gray-400 text-sm">Decision Support Systems</p>
+            </div>
+          </motion.div>
 
           <div className="flex gap-4 justify-center mt-8">
             <Link
@@ -109,17 +131,17 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-gray-400 leading-relaxed text-lg"
+            className="text-gray-500 mt-6 max-w-2xl mx-auto leading-relaxed"
           >
             I am a Computer Science graduate specializing in Data Science.
             My interests include machine learning, predictive modeling,
             and data visualization. I enjoy transforming raw data into
             meaningful insights that drive business decisions.
             <br /><br />
-            I have hands-on experience with Python, SQL, machine learning
-            frameworks, and analytical tools. I continuously explore new
-            technologies to strengthen my problem-solving abilities and
-            stay aligned with industry trends.
+            I build AI-powered decision support systems and machine learning solutions
+            that transform raw business data into strategic intelligence.
+            My work includes procurement intelligence platforms and credit risk
+            scoring systems aligned with real-world enterprise use cases.
           </motion.p>
 
         </div>
