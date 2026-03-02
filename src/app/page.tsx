@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter, ExternalLink } from "lucide-react";
 import {
   FaPython,
   FaGitAlt,
@@ -21,6 +21,11 @@ import {
 
 import { MdBarChart } from "react-icons/md";
 import { Typewriter } from "react-simple-typewriter";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import { useState } from "react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -32,7 +37,10 @@ const cardVariants = {
 };
 
 export default function Home() {
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
   return (
+
     <main className="bg-gradient-to-b from-[#0a0f1f] via-[#0f172a] to-black text-white">
 
       {/* HERO SECTION */}
@@ -158,51 +166,112 @@ export default function Home() {
       {/* PROJECTS SECTION */}
       <section
         id="projects"
-        className="py-16 sm:py-24 bg-[#0f172a] px-6"
+        className="py-16 sm:py-24 bg-[#0a0f1f] px-6"
       >
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-12 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
             Featured Projects
           </h2>
 
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
-
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            navigation
+            autoplay={{ delay: 3000 }}
+            loop
+            spaceBetween={30}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
             {[
               {
-                title: "Sales Forecasting Model",
-                desc: "Time-series forecasting using ARIMA & LSTM.",
+                title: "Credit Risk Scoring System (BFSI Project) ",
+                desc: "An end-to-end BFSI Credit Risk Scoring system using logistic regression, scorecards, fairness analysis, and Streamlit dashboards to enable explainable, compliant, and data-driven lending decisions.",
+                img: "/Credit Risk Scoring System.png",
+                github: "https://github.com/rohitsutar1611-ops/Credit_Risk_Project",
+                live: "#",
               },
               {
                 title: "Customer Segmentation",
-                desc: "Clustering using K-Means & business insights.",
+                desc: "An AI-powered Strategic Procurement Decision Support System built using Streamlit, Machine Learning, and the Kraljic Matrix Framework.This platform transforms traditional procurement analysis into a predictive and prescriptive intelligence tool for executive decision-making.",
+                img: "/Strategic Procurement.png",
+                github: "https://github.com/rohitsutar1611-ops/strategic-procurement-intelligence",
+                live: "https://strategic-procurement-intelligence0146.streamlit.app/",
               },
               {
-                title: "BI Dashboard",
-                desc: "Interactive Power BI dashboard for KPIs.",
+                title: "Customer Lifetime Value & Churn Prediction Engine",
+                desc: "An end-to-end Customer Intelligence engine combining RFM analysis, churn prediction, and CLV modeling to identify high-value customers at risk, estimate revenue impact, and drive data-driven retention strategies.",
+                img: "/3.png",
+                github: "https://github.com/rohitsutar1611-ops/Customer-Intelligence-Churn-Prediction-System",
+                live: "#",
               },
             ].map((project, index) => (
-              <div
-                key={index}
-                className="min-w-[300px] snap-center bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:scale-105 transition"
-              >
-                <h3 className="text-xl font-semibold text-cyan-400 mb-3">
-                  {project.title}
-                </h3>
+              <SwiperSlide key={index}>
+                <div className="perspective">
+                  <div
+                    onClick={() =>
+                      setFlippedIndex(flippedIndex === index ? null : index)
+                    }
+                    className={`relative w-full h-80 transition-transform duration-700 transform-style cursor-pointer ${flippedIndex === index ? "rotate-y-180" : ""
+                      }`}
+                  >
+                    {/* FRONT */}
+                    <div className="absolute w-full h-full backface-hidden bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden">
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-cyan-400">
+                          {project.title}
+                        </h3>
+                        <p className="text-xs text-gray-500 mt-2">
+                          Tap to view details
+                        </p>
+                      </div>
+                    </div>
 
-                <p className="text-gray-400 text-sm">
-                  {project.desc}
-                </p>
+                    {/* BACK */}
+                    <div className="absolute w-full h-full rotate-y-180 backface-hidden bg-[#111827] border border-cyan-500/30 rounded-2xl p-6 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-lg font-semibold text-purple-400 mb-3">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm">
+                          {project.desc}
+                        </p>
+                      </div>
 
-                <button className="mt-4 text-sm text-purple-400 hover:underline">
-                  View Details
-                </button>
-              </div>
+                      <div className="flex justify-center gap-6 mt-6">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-white hover:text-cyan-400 transition"
+                        >
+                          <Github size={24} />
+                        </a>
+
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-white hover:text-purple-400 transition"
+                        >
+                          <ExternalLink size={24} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
             ))}
-
-          </div>
+          </Swiper>
         </div>
       </section>
-
       {/* SKILLS SECTION */}
       <section className="relative py-28 bg-[#0a0f1f] px-6 overflow-hidden">
 
