@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter  } from "lucide-react";
 
 export default function Home() {
   return (
@@ -152,6 +152,15 @@ export default function Home() {
             className="hover:text-gray-400 transition"
           >
             <Github size={28} />
+          </a>
+
+          <a
+            href="https://x.com/ROHIT0146"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-gray-800 rounded-full hover:bg-sky-500 hover:scale-110 transition duration-300"
+          >
+            <Twitter  size={28} />
           </a>
         </div>
       </section>
