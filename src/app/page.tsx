@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter, ExternalLink } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter, ExternalLink, FileText, Download, Instagram  } from "lucide-react";
 import {
   FaPython,
   FaGitAlt,
@@ -111,12 +111,14 @@ export default function Home() {
           </motion.div>
 
           <div className="flex gap-4 justify-center mt-10">
-            <Link
-              href="#projects"
+            <a
+              href="/rohit_cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 hover:scale-105 transition duration-300 shadow-lg shadow-cyan-500/30"
             >
-              View Projects
-            </Link>
+              View Resume
+            </a>
 
             <Link
               href="#contact"
@@ -387,7 +389,8 @@ export default function Home() {
             { icon: <Mail size={28} />, link: "mailto:rohitsutar1611@gmail.com" },
             { icon: <Linkedin size={28} />, link: "https://www.linkedin.com/in/rohit-sutar-38b837399" },
             { icon: <Github size={28} />, link: "https://github.com/rohitsutar1611-ops" },
-            { icon: <Twitter size={28} />, link: "https://x.com/ROHIT0146" }
+            { icon: <Twitter size={28} />, link: "https://x.com/ROHIT0146" },
+            { icon: <Instagram size={28} />, link: "https://www.instagram.com/rohit.exe_146" }
           ].map((item, i) => (
             <a
               key={i}
