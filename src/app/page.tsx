@@ -209,7 +209,7 @@ export default function Home() {
               },
               {
                 title: "Customer Lifetime Value & Churn Prediction Engine",
-                desc: "An end-to-end Customer Intelligence engine combining RFM analysis, churn prediction, and CLV modeling to identify high-value customers at risk, estimate revenue impact, and drive data-driven retention strategies.",
+                desc: "An end-to-end Customer Intelligence engine combining RFM analysis, churn prediction, and CLV modeling to identify high-value customers at risk, estimate revenue impact, and drive data-driven retention strategies",
                 img: "/3.png",
                 github: "https://github.com/rohitsutar1611-ops/Customer-Intelligence-Churn-Prediction-System",
                 live: "#",
