@@ -221,8 +221,8 @@ export default function Home() {
                     onClick={() =>
                       setFlippedIndex(flippedIndex === index ? null : index)
                     }
-                    className={`transform-style cursor-pointer transition-transform duration-300 ease-out
-                      `}
+                    className={`relative w-full h-80 preserve-3d transition-transform duration-700 ${flippedIndex === index ? "rotate-y-180" : ""
+                      }`}
                   >
                     {/* FRONT */}
                     <div className="absolute w-full h-full backface-hidden bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden shadow-lg">
