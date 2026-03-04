@@ -112,7 +112,7 @@ export default function Home() {
 
           <div className="flex gap-4 justify-center mt-10">
             <a
-              href="/resume_with_photo2.pdf"
+              href="/resume_with_photo3.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-cyan-500 to-purple-600 hover:scale-105 transition duration-300 shadow-lg shadow-cyan-500/30"
